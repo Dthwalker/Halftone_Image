@@ -23,9 +23,14 @@ export default class Agent {
 
     setSize(bright, contrast, size) {
         let f = (l) => l = l < 1 ? 1 : l > 99 ? 99 : l
+        let con = (l,f = false) => {
+            let a = l + ( !f ? (contrast * 0.2) : -(contrast * 0.2) )
+            return a = contrast < 0 ? f ? a > 50 ? 50 : a : a < 50 ? 50 : a : a
+        }
+
         let l = Number(this.color[1][2]) + Number(bright)
         l = f(l)
-        l = l > 50 ? l + (contrast * 0.1) : l - (contrast * 0.1)
+        l = l > 50 ? con(l) : con(l, true);
         l = f(l);
 
         let m = [];
