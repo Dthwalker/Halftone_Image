@@ -14,7 +14,7 @@ export default class Halftone {
         this.colored   = false;
         this.bright    = 0;
         this.contrast  = 0;
-        this.imgSize   = 0;
+        this.imgSize   = 500;
         this.chaotic   = 0.5;
         this.bit       = 8;
 
@@ -36,7 +36,7 @@ export default class Halftone {
         this.agents = [];
         
         let ratio = this.img.height / this.img.width
-        this.w = this.img.width + this.imgSize;
+        this.w = this.imgSize;
         this.h = this.w * ratio;
         
         Canvas.resize(this.w, this.h);
@@ -98,7 +98,7 @@ export default class Halftone {
                 i == 5 ? this.bit  = val : null
                 if (i == 6) {
                     el.target.previousElementSibling.innerHTML = '';
-                    val = val ? val : 0
+                    val = val> 0 ? val : 1
                     el.target.value = val
                     this.imgSize  = val
                 }
