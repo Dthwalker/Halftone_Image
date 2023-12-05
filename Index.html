@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Halftone Image</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="main">
+        <div class="title">Halftone Image</div>
+        <div class="tag">developed by DTHWalker</div>
+        <div class="inputs">
+            <label>
+                <input type="file" id="file">
+                Choise file
+            </label>
+            <div class="inp_p">
+                <div>count: </div>
+                <div class="inner">10</div>
+                <input type="range" min="1" max="50" value="10">
+            </div>
+            <div class="inp_p">
+                <div>size: </div>
+                <div class="inner">10</div>
+                <input type="range" min="1" max="50" value="10">
+            </div>
+            <div class="inp_p">
+                <div>Bright: </div>
+                <div class="inner">0</div>
+                <input type="range" min="-100" max="100" value="0">
+            </div>
+            <div class="inp_p">
+                <div>Contrast: </div>
+                <div class="inner">0</div>
+                <input type="range" min="-100" max="100" value="0">
+            </div>
+            <div class="inp_p">
+                <div>Chaotic: </div>
+                <div class="inner">0.50</div>
+                <input type="range" min="0" max="50" step="0.01" value="0.50">
+            </div>
+            <div class="inp_p">
+                <div>Bit: </div>
+                <div class="inner">8</div>
+                <input type="range" min="1" max="255" step="1" value="0.50">
+            </div>
+            <div class="inp_p">
+                <div>Img Size: </div>
+                <div class="inner"></div>
+                <input type="text" value="0">
+            </div>
+            <button id="colored">Monochrome</button>
+            <button id="draw">Draw</button>
+        </div>
+
+        <canvas></canvas>
+    </div>
+    
+    <script type="module" src="/js/Main.js"></script>
+</body>
+</html>
