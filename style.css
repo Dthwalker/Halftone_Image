@@ -103,3 +103,11 @@ input[type="text"]:focus {
 .presets div {
     margin-right: 10px;
 }
+
+.fl {
+    display: flex;
+}
+
+button {
+    margin-right: 10px;
+}

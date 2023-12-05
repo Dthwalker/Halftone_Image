@@ -3,13 +3,14 @@ import random from "./Random.js";
 
 export default class Agent {
 
-    constructor(x, y, color, bit) {
+    constructor(x, y, color, bit, wOb) {
         this.x = x;
         this.y = y;
         this.sy = null;
         this.color = this.setColor(color);
         this.step = 3;
         this.bit = bit;
+        this.wOb = wOb;
     }
 
     setColor(arr) {
@@ -24,22 +25,22 @@ export default class Agent {
         let f = (l) => l = l < 1 ? 1 : l > 99 ? 99 : l
         let l = Number(this.color[1][2]) + Number(bright)
         l = f(l)
-        l = l > 50 ? l + (contrast * 0.1) : l - (contrast * 0.5)
+        l = l > 50 ? l + (contrast * 0.1) : l - (contrast * 0.1)
         l = f(l);
 
         let m = [];
         for (let i = 1; i <= this.bit; i++) {
             m.push(size / this.bit * i);
         }
-        m.unshift(0);
-        let i = Math.floor( (m.length * l) / 100 );
-        return m[ i ];
-        //return size * l / 100 * bit
+        this.wOb ? m.unshift(0) : null;
+
+        let i = this.wOb? Math.floor( (m.length * l) / 100 ) : Math.ceil((m.length * l) / 100 )
+        return this.wOb ? m[ i ] : m.at( -i );
     }
 
     colorized(colored) {
         let color = colored ? `hsl(${ (this.color[1][0] * 0.1).toFixed() * 10 }, ${(this.color[1][1] * 0.1).toFixed() * 10 }%, ${(this.color[1][2] * 0.1).toFixed() * 10}%)`
-                            : `rgb(200,200,200)`;
+                            : this.wOb ? `rgb(200,200,200)` : `rgb(10,10,10)`;
         return color;
     }
 

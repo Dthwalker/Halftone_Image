@@ -17,6 +17,7 @@ export default class Halftone {
         this.imgSize   = 500;
         this.chaotic   = 0.5;
         this.bit       = 8;
+        this.wOb       = true;
 
         Canvas.init();
         this.addControls();
@@ -73,7 +74,7 @@ export default class Halftone {
                     }
                 }
                 if (!p.length) continue
-                this.agents.push(new Agent(x, y, p, this.bit));
+                this.agents.push(new Agent(x, y, p, this.bit, this.wOb));
             }
         }
         Canvas.ctx.clearRect(0, 0, this.w, this.h)
@@ -98,17 +99,29 @@ export default class Halftone {
                 i == 5 ? this.bit  = val : null
                 if (i == 6) {
                     el.target.previousElementSibling.innerHTML = '';
-                    val = val> 0 ? val : 1
-                    el.target.value = val
-                    this.imgSize  = val
+                    val = val> 0 ? val : 1;
+                    el.target.value = val;
+                    this.imgSize  = val;
+                    return;
                 }
+                this.draw();
             });
         });
 
         document.querySelector('#colored').onclick = ({target}) => {
             this.colored = !this.colored;
             target.innerHTML = this.colored ? 'Colored' : 'Monochrome'
+            this.draw();
         }
+
+        document.querySelector('#wob').onclick = ({target}) => {
+            this.wOb = !this.wOb;
+            target.innerHTML = this.wOb ? 'White on Black' : 'Black On White';
+            target.style.cssText = this.wOb ? '' : 'background-color: white; color: rgb(10,10,10)';
+            Canvas.canvas.style.backgroundColor = this.wOb ? 'rgba(200,200,200,0)' : 'rgba(200,200,200,1)';
+            this.draw()
+        }
+
         document.querySelector('#draw').onclick = this.draw.bind(this);
 
         
