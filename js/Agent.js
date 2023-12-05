@@ -32,7 +32,7 @@ export default class Agent {
         for (let i = 1; i <= this.bit; i++) {
             m.push(size / this.bit * i);
         }
-        this.wOb ? m.unshift(0) : null;
+        m.unshift(0)
 
         let i = this.wOb? Math.floor( (m.length * l) / 100 ) : Math.ceil((m.length * l) / 100 )
         return this.wOb ? m[ i ] : m.at( -i );
