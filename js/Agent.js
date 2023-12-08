@@ -8,7 +8,7 @@ export default class Agent {
         this.y = y;
         this.sy = null;
         this.color = this.setColor(color);
-        this.step = 3;
+        this.step = 5;
         this.bit = bit;
         this.wOb = wOb;
     }

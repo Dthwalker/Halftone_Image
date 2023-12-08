@@ -18,6 +18,7 @@ export default class Halftone {
         this.chaotic   = 0.5;
         this.bit       = 8;
         this.wOb       = true;
+        this.anim      = false;
 
         Canvas.init();
         this.addControls();
@@ -84,6 +85,11 @@ export default class Halftone {
             let f = document.createElement('div');f.innerHTML = String.fromCodePoint(...t)
             a.after(f);
         }
+
+        if (this.anim) {
+            setTimeout(this.draw.bind(this), 30)
+        }
+
     }
 
     static addControls() {
@@ -99,7 +105,7 @@ export default class Halftone {
                 i == 5 ? this.bit  = val : null
                 if (i == 6) {
                     el.target.previousElementSibling.innerHTML = '';
-                    val = val> 0 ? val : 1;
+                    val = val > 0 ? val : 1;
                     el.target.value = val;
                     this.imgSize  = val;
                     return;
@@ -122,8 +128,12 @@ export default class Halftone {
             this.draw()
         }
 
-        document.querySelector('#draw').onclick = this.draw.bind(this);
+        document.querySelector('#anim').onclick = () => {
+            this.anim = !this.anim;
+            this.draw();
+        };
 
+        document.querySelector('#draw').onclick = this.draw.bind(this);
         
     }
 
